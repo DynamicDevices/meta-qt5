@@ -219,6 +219,11 @@ do_install_append() {
     if [ ! -d ${D}/${OE_QMAKE_PATH_LIBS}/fonts ]; then
         cp -a ${S}/lib/fonts ${D}/${OE_QMAKE_PATH_LIBS}
     fi
+    # install examples manually if they are missing
+    if [ ! -d ${D}${OE_QMAKE_PATH_EXAMPLES} ]; then
+        mkdir -p ${D}${OE_QMAKE_PATH_EXAMPLES}
+        cp -a ${S}/examples/* ${D}${OE_QMAKE_PATH_EXAMPLES}
+    fi
 
     # Remove example.pro file as it is useless
     rm -f ${D}${OE_QMAKE_PATH_EXAMPLES}/examples.pro	
